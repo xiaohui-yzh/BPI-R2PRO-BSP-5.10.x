@@ -46,7 +46,9 @@ function choose_target_board()
 	echo ${RK_TARGET_BOARD_ARRAY[@]} | xargs -n 1 | sed "=" | sed "N;s/\n/. /"
 
 	local INDEX
-	read -p "Which would you like? [0]: " INDEX
+	#modify by yaozhihui
+	#read -p "Which would you like? [0]: " INDEX
+	INDEX=5
 	INDEX=$((${INDEX:-0} - 1))
 
 	if echo $INDEX | grep -vq [^0-9]; then

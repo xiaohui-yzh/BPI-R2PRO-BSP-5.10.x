@@ -2,4 +2,28 @@
 **/*.tmp
 
 # 忽略所有目录下的 .o 文件
-**/*.o
+**/*.o*
+
+# 忽略所有目录下的 .dtb 文件
+**/*.dtb*
+
+# 忽略kernel目录下的 .cmd 文件
+kernel/**/*.cmd
+
+# 忽略kernel目录下的 .a 文件
+kernel/**/*.a*
+
+# 忽略kernel目录下的 .so 文件
+kernel/**/*.so*
+
+kernel/.tmp_*
+kernel/drivers/media/
+kernel/drivers/net/wireless/marvell/mwifiex/
+openwrt/key-build*
+openwrt/bin/
+openwrt/build_dir/
+openwrt/dl/
+openwrt/feeds/
+openwrt/staging_dir/
+openwrt/tmp/
+rockdev/
