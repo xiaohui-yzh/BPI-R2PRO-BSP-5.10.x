@@ -24,7 +24,7 @@ cd $OPENWRT_DIR
 echo "using $OPENWRT_DEFCOFNIG"
 cp "$OPENWRT_CONFIG_PATH" .config && make defconfig
 
-#make download -j$(nproc)
+make download -j$(nproc)
 find dl -size -1024c -exec ls -l {} \;
 find dl -size -1024c -exec rm -f {} \;
 
