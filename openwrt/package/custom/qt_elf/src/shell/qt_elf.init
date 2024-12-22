@@ -1,0 +1,54 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2022 rujie.com.cn
+. /lib/functions.sh
+
+#启动顺序
+START=99
+
+#使用procd守护本进程
+USE_PROCD=1
+
+USR_PROC=/usr/sbin/myqttest.elf
+
+#procd的守护服务启动函数
+start_service(){
+    echo "start_service running ${USR_PROC} ......"
+    #开启一个守护实例
+    procd_open_instance
+
+    #设定进程启动命令
+    procd_set_param command ${USR_PROC} -platform linuxfb
+
+    #设定进程重启参数：3600秒内退出算异常，异常后60秒重启，连续异常-1（不限）次后挂起，不再启动
+    procd_set_param respawn 3600 60 -1
+    
+    #关闭守护实例
+    procd_close_instance
+}
+
+#procd的服务停止函数
+stop_service() {
+    echo "stop_service ${USR_PROC} stopping ......"
+}
+
+#不使用procd时的启动函数
+start() {
+    ${USR_PROC} &
+    echo "${USR_PROC} has start."
+}
+
+#不使用procd时的停止函数
+stop() {
+    killall -9 ${USR_PROC}
+    echo "${USR_PROC} has stopped."
+}
+
+boot() {
+    start "$@"
+}
+
+restart() {
+    trap '' TERM
+    stop "$@"
+    start "$@"
+}
