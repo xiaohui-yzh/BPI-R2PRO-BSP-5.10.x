@@ -510,6 +510,12 @@
 	pinctrl-0 = <&uart4m1_xfer>;
 };
 
+&uart5 {
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart5m1_xfer>;
+};
+
 &uart8 {
 	status = "okay";
 	pinctrl-names = "default";

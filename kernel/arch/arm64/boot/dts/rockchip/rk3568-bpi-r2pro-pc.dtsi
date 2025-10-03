@@ -121,6 +121,10 @@
         status = "disabled";
 };
 
+&uart5 {
+	status = "okay";
+};
+
 &spi1 {
 	status = "disabled";
 };
